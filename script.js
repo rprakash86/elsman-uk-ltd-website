@@ -112,23 +112,8 @@ if(!reduceMotion && 'IntersectionObserver' in window){
   $$('.section,.pulse-strip,.intro-band,.feature,.step,.faq-list details,.product-card').forEach(el=>{el.classList.add('reveal-on-scroll');revealObserver.observe(el);});
 }
 
-// Count-up uses verified catalogue figures. Always set a correct fallback first,
-// then animate when the element enters view (so it never remains stuck at zero).
+// Counters remain at their verified final values; no delayed observer can leave them at zero.
 $$('.count-up').forEach(el=>{el.textContent=el.dataset.count||'0';});
-if(!reduceMotion && 'IntersectionObserver' in window){
- const countObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-   if(!entry.isIntersecting)return;
-   const el=entry.target, target=Number(el.dataset.count||0), duration=900, begin=performance.now();
-   function tick(now){
-     const progress=Math.min((now-begin)/duration,1);
-     el.textContent=String(Math.round(target*(1-Math.pow(1-progress,3))));
-     if(progress<1) requestAnimationFrame(tick);
-   }
-   requestAnimationFrame(tick);
-   countObserver.unobserve(el);
- }),{threshold:0.15});
- $$('.count-up').forEach(el=>countObserver.observe(el));
-}
 // A rotating hero visual uses supplied catalogue photos, not external stock imagery.
 const heroSlides=[
  {src:'assets/Colorful Dinosaur Eggs and Toys.png',alt:'Colourful dinosaur eggs and toy dinosaurs'},
