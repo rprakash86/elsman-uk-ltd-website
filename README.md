@@ -55,3 +55,10 @@ Create a production build with `npm run build`. The deployable website is genera
 - Address supplied on invoice: Wythenshawe, Manchester, Greater Manchester, M22 1TY, United Kingdom (house number omitted)
 - Company registration number: 17304936
 - Email: hello@elsman.co.uk
+
+
+## Enquiry behaviour
+The wholesale enquiry form uses a `mailto:` link to prepare an email to hello@elsman.co.uk. Customers must press Send in their email app. If no email app opens, the form offers a direct Hostinger Webmail link. No form data is stored by the website.
+
+## Mobile improvements
+The site includes mobile-specific layout, larger touch targets, readable form fields, a scrollable category filter row, improved navigation and reduced-motion support.

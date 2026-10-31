@@ -22,8 +22,8 @@
 - [ ] Enable SSL/HTTPS and verify the domain redirects to HTTPS.
 - [ ] Set up a backup and keep the GitHub repository as the source of truth.
 
-## Important form limitation
-The current enquiry form uses a `mailto:` link. It opens the visitor's email application with a prepared message; it does not submit to a server, store leads, or guarantee delivery. Before depending on the form for business enquiries, connect a form backend or server-side handler, test spam protection, and update the privacy notice to match the actual data flow.
+## Enquiry method and limitation
+The enquiry form uses a `mailto:` link to open the visitor's configured email application with a prepared message addressed to hello@elsman.co.uk. The visitor must review and press Send. It does not submit to a server, store leads, or guarantee delivery. If no email application is configured on the visitor's device, the page provides a fallback link to Hostinger Webmail and the direct email address.
 
 ## Product and regulatory checks
 Do not publish unverified claims such as "8-month protection", "safe", "eco-friendly", "water resistant", age suitability, certification or performance statements unless the product documentation substantiates them. Confirm relevant UK product safety, labelling, traceability and importer/distributor responsibilities for each product category before sale.

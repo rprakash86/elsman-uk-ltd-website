@@ -24,4 +24,25 @@ $('.dialog-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 $('#dialog-enquire').addEventListener('click',()=>{dialog.close();$('#enquiry-form [name="message"]').value=`I'm interested in ${selectedProduct}. Please share current availability, specifications and wholesale pricing.`;$('#contact').scrollIntoView({behavior:'smooth'});});
 $$('[data-enquire]').forEach(btn=>btn.addEventListener('click',()=>{$('#enquiry-form [name="message"]').value=`I'm interested in ${btn.dataset.enquire}. Please share current availability, specifications and wholesale pricing.`;$('#contact').scrollIntoView({behavior:'smooth'});}));
-$('#enquiry-form').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);const subject=encodeURIComponent('Wholesale enquiry – Elsman UK Ltd');const body=encodeURIComponent(`Name: ${f.get('name')}\nBusiness: ${f.get('business')}\nBusiness email: ${f.get('email')}\nPhone: ${f.get('phone')||'Not provided'}\nLocation: ${f.get('location')||'Not provided'}\nProducts of interest: ${f.get('interest')}\n\nMessage:\n${f.get('message')}\n\nConsent to respond: Yes`);$('#form-status').textContent='Your email app should open with the enquiry ready for review. Please press Send in your email app.';window.location.href=`mailto:hello@elsman.co.uk?subject=${subject}&body=${body}`;});
+$('#enquiry-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const form=e.currentTarget;
+  if(!form.reportValidity())return;
+  const f=new FormData(form);
+  const subject=encodeURIComponent('Wholesale enquiry – Elsman UK Ltd');
+  const body=encodeURIComponent([
+    `Name: ${f.get('name')}`,
+    `Business: ${f.get('business')}`,
+    `Business email: ${f.get('email')}`,
+    `Phone: ${f.get('phone')||'Not provided'}`,
+    `Location: ${f.get('location')||'Not provided'}`,
+    `Products of interest: ${f.get('interest')||'General wholesale enquiry'}`,
+    '', 'Message:', f.get('message'), '', 'Consent to respond: Yes'
+  ].join('\n'));
+  const mailto=`mailto:hello@elsman.co.uk?subject=${subject}&body=${body}`;
+  const status=$('#form-status');
+  status.textContent='We have prepared your enquiry. Your email app should open; review the details and press Send.';
+  status.classList.remove('form-error');
+  // Trigger the mail client directly from the visitor's submit action.
+  window.location.assign(mailto);
+});
