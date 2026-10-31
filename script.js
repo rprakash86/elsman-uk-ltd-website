@@ -3,11 +3,53 @@ const menuButton=$('.menu-button'),nav=$('.navigation');
 menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
 $$('.navigation a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
 $('#year').textContent=new Date().getFullYear();
+
 let activeFilter='all';
-function filterProducts(){const q=$('#product-search').value.trim().toLowerCase();let visible=0;$$('.product-card').forEach(card=>{const categoryMatch=activeFilter==='all'||card.dataset.category===activeFilter;const searchMatch=!q||card.dataset.name.includes(q)||card.innerText.toLowerCase().includes(q);const show=categoryMatch&&searchMatch;card.hidden=!show;if(show)visible++;});$('#no-results').hidden=visible!==0;$('#results-count').textContent=`Showing ${visible} of 8 product lines`;$('#clear-search').hidden=!q&&activeFilter==='all';}
-$$('.filter').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;$$('.filter').forEach(b=>b.classList.toggle('active',b===btn));filterProducts();}));
-$('#product-search').addEventListener('input',filterProducts);
-$('#clear-search').addEventListener('click',()=>{ $('#product-search').value='';activeFilter='all';$$('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));filterProducts();$('#product-search').focus();});
+const searchInput=$('#product-search');
+const filterButtons=$$('.filter');
+const productCards=$$('.product-card');
+function filterProducts(){
+  const q=(searchInput?.value||'').trim().toLowerCase();
+  let visible=0;
+  productCards.forEach(card=>{
+    const categoryMatch=activeFilter==='all'||(card.dataset.category||'')===activeFilter;
+    const searchable=((card.dataset.name||'')+' '+(card.textContent||'')).toLowerCase();
+    const show=categoryMatch&&(!q||searchable.includes(q));
+    card.hidden=!show;
+    if(show) visible++;
+  });
+  const noResults=$('#no-results');
+  if(noResults) noResults.hidden=visible!==0;
+  const results=$('#results-count');
+  if(results) results.textContent=`Showing ${visible} of ${productCards.length} product lines`;
+  const clear=$('#clear-search');
+  if(clear) clear.hidden=!q&&activeFilter==='all';
+}
+filterButtons.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    activeFilter=btn.dataset.filter||'all';
+    filterButtons.forEach(b=>{
+      const selected=b===btn;
+      b.classList.toggle('active',selected);
+      b.setAttribute('aria-pressed',String(selected));
+    });
+    filterProducts();
+  });
+});
+if(searchInput) searchInput.addEventListener('input',filterProducts);
+$('#clear-search')?.addEventListener('click',()=>{
+  if(searchInput) searchInput.value='';
+  activeFilter='all';
+  filterButtons.forEach(b=>{
+    const selected=b.dataset.filter==='all';
+    b.classList.toggle('active',selected);
+    b.setAttribute('aria-pressed',String(selected));
+  });
+  filterProducts();
+  searchInput?.focus();
+});
+filterButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.classList.contains('active'))));
+filterProducts();
 const productData={
  collar:{title:'Pet Protection Collar – 2 Pack',category:'PET ACCESSORIES',description:'A practical pet accessory for customers shopping for their dogs and cats.',image:'assets/Collar.jpg'},
  dino:{title:'Dinosaur Eggs & Figures',category:'TOYS & NOVELTY',description:'Brightly coloured novelty toys designed to catch the eye on the shelf.',image:'assets/Colorful Dinosaur Eggs and Toys.png'},
@@ -55,11 +97,24 @@ if(!reduceMotion && 'IntersectionObserver' in window){
   const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}}),{threshold:.12});
   $$('.section,.pulse-strip,.intro-band,.feature,.step,.faq-list details,.product-card').forEach(el=>{el.classList.add('reveal-on-scroll');revealObserver.observe(el);});
 }
-// Count-up uses only verified catalogue figures shown on this page.
+
+// Count-up uses verified catalogue figures. Always set a correct fallback first,
+// then animate when the element enters view (so it never remains stuck at zero).
+$$('.count-up').forEach(el=>{el.textContent=el.dataset.count||'0';});
 if(!reduceMotion && 'IntersectionObserver' in window){
- const countObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;const target=Number(el.dataset.count||0);let start=0;const duration=850;const begin=performance.now();function tick(now){const progress=Math.min((now-begin)/duration,1);el.textContent=String(Math.round(target*(1-Math.pow(1-progress,3))));if(progress<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);countObserver.unobserve(el);}),{threshold:.7});
+ const countObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(!entry.isIntersecting)return;
+   const el=entry.target, target=Number(el.dataset.count||0), duration=900, begin=performance.now();
+   function tick(now){
+     const progress=Math.min((now-begin)/duration,1);
+     el.textContent=String(Math.round(target*(1-Math.pow(1-progress,3))));
+     if(progress<1) requestAnimationFrame(tick);
+   }
+   requestAnimationFrame(tick);
+   countObserver.unobserve(el);
+ }),{threshold:0.15});
  $$('.count-up').forEach(el=>countObserver.observe(el));
-}else{$$('.count-up').forEach(el=>el.textContent=el.dataset.count);}
+}
 // A rotating hero visual uses supplied catalogue photos, not external stock imagery.
 const heroSlides=[
  {src:'assets/Colorful Dinosaur Eggs and Toys.png',alt:'Colourful dinosaur eggs and toy dinosaurs'},
