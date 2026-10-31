@@ -1,64 +1,38 @@
-# Elsman UK Ltd — Premium wholesale catalogue website
+# Elsman UK Ltd website
 
-This is a responsive static website built with HTML, CSS and vanilla JavaScript. It is designed as a B2B wholesale catalogue for convenience stores and independent retailers.
+Responsive wholesale product catalogue for Elsman UK Ltd. Built with HTML, CSS and JavaScript, with Vite available for local preview/build.
 
-## Project contents
-- `index.html` — full homepage, catalogue, company story, wholesale process, FAQs and enquiry form
-- `styles.css` — complete responsive visual system for desktop, tablet and mobile
-- `script.js` — mobile navigation, product category filters, live search, product detail dialogs and enquiry email preparation
-- `assets/` — supplied product photography, favicon and social sharing image
+## Features
+- Responsive desktop and mobile layouts
+- Eight product lines using supplied product photography
+- Live catalogue search and category filters
+- Product quick-view dialog and product-specific email enquiry preparation (`mailto:`)
+- Animated hero image rotation using supplied catalogue images
+- Scroll reveal, verified catalogue counters, recently viewed product (session only), and back-to-top control
+- Reduced-motion accessibility support
+- Company contact and registration details in the footer
 
-## Business details included
-- Legal name: Elsman UK Ltd
-- Enquiry email: hello@elsman.co.uk
-- Website: elsman.co.uk (update DNS/hosting separately)
-
-## Before launch — important checks
-1. Confirm that the product descriptions accurately reflect the goods you sell.
-2. Add exact specifications, pack sizes, age guidance, safety/compliance information and availability only after verification.
-3. Add registered office/company number, VAT details, telephone number and delivery/returns terms if you want these displayed.
-4. Add a Privacy Notice and cookie notice appropriate to the data and tools used. The form currently prepares an email via the visitor's email app; it does not store submissions on a server.
-5. Test on iPhone/Android, tablet and desktop, and check all links and email behaviour.
-6. Consider a proper form backend (for example Hostinger-supported PHP mail handling or a trusted form service) before relying on the form for lead capture.
-
-## Preview locally
-Open `index.html` in a browser, or use VS Code with the Live Server extension.
-
-## GitHub
-Create a repository such as `elsman-uk-ltd-website`, then upload the *contents* of this folder to the repository root (not the ZIP file). Keep `index.html` at the root.
-
-## Hostinger deployment
-For a static HTML site:
-1. In Hostinger hPanel, open Websites and select the domain.
-2. If Git deployment is available on your hosting plan, open the Git deployment area, connect GitHub, select this repository and the `main` branch, and set the deployment directory to `public_html` (follow the current hPanel instructions).
-3. Alternatively, upload the contents of this folder, including `assets/`, into `public_html` using File Manager or FTP.
-4. Confirm `index.html` is directly inside `public_html`.
-5. Enable SSL and force HTTPS in Hostinger, then test the live domain.
-
-This package is a static front-end. It does not include inventory management, customer accounts, checkout, a database or server-side form processing.
-
-## Development / build
-
-This is a static HTML/CSS/JavaScript site with Vite added for package-based import and production builds.
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Create a production build with `npm run build`. The deployable website is generated in the `dist/` folder. For direct static hosting without a build step, the root `index.html`, `styles.css`, `script.js`, and `assets/` folder can also be uploaded as-is.
+## Build
+
+```bash
+npm run build
+```
+
+Vite outputs the production site to `dist/`. For Hostinger Git deployment using a static Vite build, configure the build command as `npm run build` and output directory as `dist`. If uploading the plain source files directly to `public_html`, ensure `index.html`, `styles.css`, `script.js`, `package.json`, and `assets/` are all in the deployed root; the website does not require a server-side runtime.
+
+## Enquiries
+The enquiry form prepares a message addressed to `hello@elsman.co.uk` in the visitor's configured email application. The visitor must press Send in that application. If no email app is configured, the page provides a Hostinger Webmail fallback. This is not a server-submitted form.
+
+## Before publishing
+Confirm product specifications, stock, safety/compliance statements, pack sizes and availability. Review privacy wording and company details. The website does not display wholesale prices or process orders/payments.
 
 
-
-## Company details
-- Elsman UK Ltd
-- Address supplied on invoice: Wythenshawe, Manchester, Greater Manchester, M22 1TY, United Kingdom (house number omitted)
-- Company registration number: 17304936
-- Email: hello@elsman.co.uk
-
-
-## Enquiry behaviour
-The wholesale enquiry form uses a `mailto:` link to prepare an email to hello@elsman.co.uk. Customers must press Send in their email app. If no email app opens, the form offers a direct Hostinger Webmail link. No form data is stored by the website.
-
-## Mobile improvements
-The site includes mobile-specific layout, larger touch targets, readable form fields, a scrollable category filter row, improved navigation and reduced-motion support.
+## Motion and interaction
+The site includes animated hero entrance, floating product cards, a continuously scrolling catalogue ticker, timed hero image rotation, hover shine on product cards and buttons, scroll reveals, count-up metrics, and mobile-aware reduced-motion handling. Test with normal motion enabled; visitors who request reduced motion receive a simplified experience.
