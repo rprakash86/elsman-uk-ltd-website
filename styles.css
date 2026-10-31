@@ -200,3 +200,22 @@ body{font-size:16px;line-height:1.65}
 .footer-bottom{font-size:11px}
 @media(max-width:900px){.navigation{font-size:12px;gap:17px}.hero{gap:30px}.section{padding-top:90px;padding-bottom:90px}.product-image{height:230px}.feature-image{height:390px}.feature-band{min-height:390px}.about{gap:50px}.faq{gap:50px}.contact{gap:35px}}
 @media(max-width:680px){.announcement{font-size:9px}.navigation{font-size:14px}.hero{padding-top:58px;padding-bottom:70px;gap:12px}.hero h1{font-size:68px;line-height:1.03}.hero-lead{font-size:15px;line-height:1.8}.hero-proof{font-size:12px}.intro-band{padding-top:32px;padding-bottom:32px;gap:16px}.intro-band p{font-size:16px;line-height:1.75}.section{padding:78px 22px}.section-intro p,.about-body p,.working-head>p,.faq-intro p{font-size:14px}.catalogue-controls{margin-top:34px}.products-grid{gap:34px 14px}.product-image{height:180px}.product-details h3{font-size:14px}.product-details p{font-size:12px;line-height:1.75;min-height:66px}.text-action{font-size:10px}.feature-image{height:260px}.feature-band{min-height:0}.feature-copy{padding:45px 23px 55px}.feature-copy p{font-size:14px}.about-body .about-large{font-size:18px}.working{padding:75px 22px}.step h3{font-size:18px}.step p{font-size:13px}.faq-list summary{font-size:14px}.faq-list details p{font-size:13px}.contact{padding:70px 22px;gap:40px}.contact-left>p{font-size:14px}.enquiry-form{padding:25px 19px}.form-grid label{font-size:11px}.form-grid input,.form-grid select,.form-grid textarea{font-size:12px}.footer-main p{font-size:12px}.footer-company-details{font-size:12px}.footer-bottom{font-size:10px}}
+
+
+/* Final visual fixes: preserve the complete brand mark and product photography */
+.logo{flex:0 0 auto;min-width:0}
+.brand-logo{display:block;width:205px;max-width:100%;height:auto;max-height:62px;object-fit:contain;object-position:left center;flex:0 0 auto}
+.header-inner{gap:28px}
+.navigation{flex:0 1 auto;min-width:0;white-space:nowrap}
+.hero-image-main{transform:none;background:#fff}
+.hero-image-main img{object-fit:contain;background:#fff}
+.feature-image{background:#fff;display:flex;align-items:center;justify-content:center}
+.feature-image img{object-fit:contain;object-position:center center;filter:none;background:#fff}
+@media(max-width:900px){
+  .header-inner{gap:16px}
+  .brand-logo{width:178px;max-height:56px}
+  .navigation{gap:14px}
+}
+@media(max-width:680px){
+  .brand-logo{width:160px;max-height:52px}
+}
