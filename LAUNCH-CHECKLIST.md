@@ -1,16 +1,51 @@
-# Elsman UK Ltd – launch checklist
+# Elsman UK Ltd — launch checklist
 
-- [ ] Confirm the deployed site uses the intended repository branch and deployment directory.
-- [ ] Check the logo and all eight product images on desktop and mobile.
-- [ ] Test catalogue search, every category filter, product quick-view and product-specific enquiry buttons.
-- [ ] Test the enquiry form with a configured email application; confirm recipient, subject and message are correct.
-- [ ] Test the Hostinger Webmail fallback link.
-- [ ] Test mobile navigation, touch targets, image sizing, footer and no horizontal overflow.
-- [ ] Check keyboard navigation, dialog close behaviour and reduced-motion preference.
-- [ ] Confirm company address and registration number are accurate.
-- [ ] Verify all product descriptions, specifications, pack sizes, certifications and availability before publishing.
-- [ ] Add/review privacy notice and terms of trade before collecting customer details.
-- [ ] Confirm HTTPS and custom-domain DNS.
+## Website identity
+- [x] Company name: Elsman UK Ltd
+- [x] Contact email: hello@elsman.co.uk
+- [x] Vibrant visual direction: cobalt blue, orange, lime, yellow and warm neutrals
+- [x] Supplied product images included
+- [x] Responsive catalogue, filters, search, product detail dialogs and FAQs
+- [x] Enquiry email pre-filled to hello@elsman.co.uk
 
-## Enquiry behaviour
-The current form uses `mailto:`. It opens the visitor's configured email handler; it does not submit or store enquiries on the website. If no email application is configured, visitors can use the Hostinger Webmail fallback shown below the form.
+## Must complete before public launch
+- [ ] Confirm the domain `elsman.co.uk` is registered and DNS points to the Hostinger website.
+- [ ] Confirm the correct legal entity details and registered office address for the footer/legal pages.
+- [ ] Add a business telephone number if you want calls.
+- [ ] Confirm each product's exact commercial name, description, pack size, specifications, age guidance and compliance/safety information.
+- [ ] Confirm whether the images supplied are approved for public marketing use and accurately depict the products being sold.
+- [ ] Add a reviewed Privacy Notice explaining the data controller, enquiry data, purposes, lawful basis, recipients, retention, rights and contact route.
+- [ ] Add appropriate terms of trade, delivery, returns and complaints information for your B2B sales model.
+- [ ] Check whether any non-essential cookies, analytics, pixels or embedded third-party services are added; configure consent where required.
+- [ ] Test the enquiry flow on devices with and without a configured email app.
+- [ ] Test keyboard navigation, contrast, mobile layout, image loading and broken links.
+- [ ] Enable SSL/HTTPS and verify the domain redirects to HTTPS.
+- [ ] Set up a backup and keep the GitHub repository as the source of truth.
+
+## Enquiry method and limitation
+The enquiry form uses a `mailto:` link to open the visitor's configured email application with a prepared message addressed to hello@elsman.co.uk. The visitor must review and press Send. It does not submit to a server, store leads, or guarantee delivery. If no email application is configured on the visitor's device, the page provides a fallback link to Hostinger Webmail and the direct email address.
+
+## Product and regulatory checks
+Do not publish unverified claims such as "8-month protection", "safe", "eco-friendly", "water resistant", age suitability, certification or performance statements unless the product documentation substantiates them. Confirm relevant UK product safety, labelling, traceability and importer/distributor responsibilities for each product category before sale.
+
+## Deployment using Hostinger Git integration
+This project is a static HTML/CSS/JavaScript website. Hostinger's current Git integration supports custom PHP and HTML websites on eligible Web and Cloud hosting plans:
+1. Push the contents of this project to the root of a GitHub repository. `index.html` must be at repository root.
+2. In Hostinger hPanel, open Websites → Manage site → Advanced → Git.
+3. Connect GitHub using the Hostinger authorisation flow.
+4. Select the repository and `main` branch.
+5. Set the deployment root to `public_html` and deploy.
+6. Enable auto-deployment for the selected branch if desired.
+7. Verify the deployment status in Hostinger and test the live domain.
+8. Make future edits in GitHub and push to the selected branch; do not manually edit deployed files if Git auto-deployment will overwrite them.
+
+Official guide: https://www.hostinger.com/support/1583302-how-to-deploy-a-git-repository-in-hostinger/
+
+## Suggested final smoke tests
+- Home, Products, About, How we work, FAQs and Contact navigation
+- Product category buttons and search
+- Product detail modal open/close
+- Product-specific enquiry buttons
+- Required form validation and email address recipient
+- Desktop width, tablet width and mobile width
+- HTTPS certificate and no mixed-content warnings
