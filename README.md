@@ -1,4 +1,4 @@
-# Elsman UK Ltd — Vibrant wholesale catalogue website
+# Elsman UK Ltd — Premium wholesale catalogue website
 
 This is a responsive static website built with HTML, CSS and vanilla JavaScript. It is designed as a B2B wholesale catalogue for convenience stores and independent retailers.
 
@@ -14,8 +14,6 @@ This is a responsive static website built with HTML, CSS and vanilla JavaScript.
 - Website: elsman.co.uk (update DNS/hosting separately)
 
 ## Before launch — important checks
-
-See `LAUNCH-CHECKLIST.md` for the detailed pre-launch checklist.
 1. Confirm that the product descriptions accurately reflect the goods you sell.
 2. Add exact specifications, pack sizes, age guidance, safety/compliance information and availability only after verification.
 3. Add registered office/company number, VAT details, telephone number and delivery/returns terms if you want these displayed.
@@ -38,3 +36,22 @@ For a static HTML site:
 5. Enable SSL and force HTTPS in Hostinger, then test the live domain.
 
 This package is a static front-end. It does not include inventory management, customer accounts, checkout, a database or server-side form processing.
+
+## Development / build
+
+This is a static HTML/CSS/JavaScript site with Vite added for package-based import and production builds.
+
+```bash
+npm install
+npm run dev
+```
+
+Create a production build with `npm run build`. The deployable website is generated in the `dist/` folder. For direct static hosting without a build step, the root `index.html`, `styles.css`, `script.js`, and `assets/` folder can also be uploaded as-is.
+
+
+
+## Company details
+- Elsman UK Ltd
+- Address supplied on invoice: Wythenshawe, Manchester, Greater Manchester, M22 1TY, United Kingdom (house number omitted)
+- Company registration number: 17304936
+- Email: hello@elsman.co.uk

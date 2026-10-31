@@ -125,3 +125,78 @@ body{color:var(--ink);background:#fff}
   .product-card:nth-child(4n+3) .product-image{background:#f2f8d9}
   .product-card:nth-child(4n) .product-image{background:#fff4cf}
 }
+
+/* Official Elsman wordmark */
+.brand-logo{display:block;width:154px;height:auto;max-height:58px;object-fit:contain}
+.footer-logo .brand-logo{width:142px;filter:brightness(0) invert(1)}
+.footer-company-details{display:flex;flex-direction:column;gap:5px;margin:18px 0;color:rgba(255,255,255,.78);font-size:13px;line-height:1.5}
+.footer-company-details strong{color:#fff;font-weight:700}
+
+
+/* Readability and breathing-room refinements */
+body{font-size:16px;line-height:1.65}
+.announcement{font-size:11px;min-height:40px}
+.navigation{font-size:14px;gap:34px}
+.hero{min-height:660px;gap:64px;padding-top:92px;padding-bottom:82px}
+.hero h1{font-size:clamp(66px,7.4vw,98px);line-height:1.02;margin:30px 0 26px}
+.hero-lead{font-size:18px;line-height:1.8;max-width:540px}
+.hero-buttons{margin-top:38px;gap:16px}
+.button{font-size:13px;padding:17px 22px}
+.hero-proof{font-size:13px;line-height:1.6;margin-top:42px}
+.eyebrow{font-size:11px}
+.intro-band{padding-top:46px;padding-bottom:46px;gap:44px}
+.intro-band p{font-size:19px;line-height:1.7}
+.arrow-link{font-size:13px}
+.section{padding-top:120px;padding-bottom:120px}
+.section-top{gap:70px}
+.section h2,.about h2,.working h2,.faq h2{line-height:1.12}
+.section-intro p,.about-body p,.working-head>p,.faq-intro p{font-size:15px;line-height:1.9}
+.catalogue-controls{margin-top:55px;margin-bottom:34px;gap:28px}
+.search-box{height:46px;min-width:250px}
+.search-box input{font-size:13px}
+.filter{font-size:12px;padding:12px 15px}
+.products-grid{gap:48px 28px}
+.product-image{height:285px}
+.category-pill{font-size:9px;padding:8px 11px}
+.product-details{padding-top:20px}
+.product-meta{font-size:9px}
+.product-details h3{font-size:19px;margin:15px 0 10px}
+.product-details p{font-size:14px;line-height:1.8;min-height:52px}
+.text-action{font-size:12px;padding-top:16px}
+.catalogue-footnote{font-size:11px;line-height:1.8;margin-top:42px}
+.feature-band{min-height:470px}
+.feature-image{height:470px}
+.feature-image img{object-fit:cover;object-position:center 44%;filter:none}
+.feature-copy{padding-top:85px;padding-bottom:75px}
+.feature-copy h2{line-height:1.12;margin:25px 0}
+.feature-copy p{font-size:15px;line-height:1.9;max-width:430px}
+.about{gap:110px}
+.about-body .about-large{font-size:22px;line-height:1.7}
+.working-head>p{max-width:410px}
+.steps{gap:34px;margin-top:72px}
+.step{padding:26px 24px 0 0}
+.step-icon{margin:32px 0 22px}
+.step h3{font-size:20px}
+.step p{font-size:14px;line-height:1.9;max-width:330px}
+.faq{gap:110px}
+.faq-list details{padding:25px 0}
+.faq-list summary{font-size:16px}
+.faq-list details p{font-size:14px;line-height:1.9}
+.contact{gap:80px;padding-top:105px;padding-bottom:105px}
+.contact-left>p{font-size:15px;line-height:1.9}
+.contact-email a{font-size:20px}
+.enquiry-form{padding:38px 40px}
+.form-heading>span{font-size:13px}
+.form-heading small{font-size:11px}
+.form-grid{gap:20px}
+.form-grid label{font-size:12px;gap:9px}
+.form-grid input,.form-grid select,.form-grid textarea{font-size:13px;padding:14px}
+.consent{font-size:11px;line-height:1.7;margin:22px 0}
+.form-note,.form-status{font-size:11px;line-height:1.7}
+.footer{padding-top:48px}
+.footer-main p{font-size:13px;line-height:1.9}
+.footer-company-details{font-size:13px;line-height:1.7}
+.footer-mail{font-size:14px}
+.footer-bottom{font-size:11px}
+@media(max-width:900px){.navigation{font-size:12px;gap:17px}.hero{gap:30px}.section{padding-top:90px;padding-bottom:90px}.product-image{height:230px}.feature-image{height:390px}.feature-band{min-height:390px}.about{gap:50px}.faq{gap:50px}.contact{gap:35px}}
+@media(max-width:680px){.announcement{font-size:9px}.navigation{font-size:14px}.hero{padding-top:58px;padding-bottom:70px;gap:12px}.hero h1{font-size:68px;line-height:1.03}.hero-lead{font-size:15px;line-height:1.8}.hero-proof{font-size:12px}.intro-band{padding-top:32px;padding-bottom:32px;gap:16px}.intro-band p{font-size:16px;line-height:1.75}.section{padding:78px 22px}.section-intro p,.about-body p,.working-head>p,.faq-intro p{font-size:14px}.catalogue-controls{margin-top:34px}.products-grid{gap:34px 14px}.product-image{height:180px}.product-details h3{font-size:14px}.product-details p{font-size:12px;line-height:1.75;min-height:66px}.text-action{font-size:10px}.feature-image{height:260px}.feature-band{min-height:0}.feature-copy{padding:45px 23px 55px}.feature-copy p{font-size:14px}.about-body .about-large{font-size:18px}.working{padding:75px 22px}.step h3{font-size:18px}.step p{font-size:13px}.faq-list summary{font-size:14px}.faq-list details p{font-size:13px}.contact{padding:70px 22px;gap:40px}.contact-left>p{font-size:14px}.enquiry-form{padding:25px 19px}.form-grid label{font-size:11px}.form-grid input,.form-grid select,.form-grid textarea{font-size:12px}.footer-main p{font-size:12px}.footer-company-details{font-size:12px}.footer-bottom{font-size:10px}}

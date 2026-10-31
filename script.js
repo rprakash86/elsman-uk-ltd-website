@@ -14,7 +14,8 @@ const productData={
  orb:{title:'Illuminated Orb Ball',category:'GAMES & GADGETS',description:'A colourful novelty gadget with a striking illuminated look.',image:'assets/Orb ball.jpg'},
  nail:{title:'Pet Nail Grooming Tool',category:'PET ACCESSORIES',description:'A grooming accessory for customers who care for their pets at home.',image:'assets/Pet Nail Clipper.jpg'},
  fidget:{title:'Push & Pop Fidget Toys',category:'FIDGET TOYS',description:'A colourful assortment of tactile toys and sensory favourites.',image:'assets/Push and Pop.jpg'},
- tictactoe:{title:'Electronic Tic-Tac-Toe Game',category:'GAMES & GADGETS',description:'A compact electronic game inspired by a familiar classic.',image:'assets/Tic Tac Toe.jpg'}
+ tictactoe:{title:'Electronic Tic-Tac-Toe Game',category:'GAMES & GADGETS',description:'A compact electronic game inspired by a familiar classic.',image:'assets/Tic Tac Toe.jpg'},
+ camera:{title:'Digital Instant Print Camera',category:'TOYS & GADGETS',description:'A pink digital instant print camera bundle supplied with accessories shown in the product image. Please enquire for current specifications and wholesale availability.',image:'assets/Digital Camera.jpg'}
 };
 const dialog=$('#product-dialog');let selectedProduct='';
 function openProduct(key){const p=productData[key];if(!p)return;selectedProduct=p.title;$('#dialog-img').src=p.image;$('#dialog-img').alt=p.title;$('#dialog-title').textContent=p.title;$('#dialog-category').textContent=p.category;$('#dialog-description').textContent=p.description;dialog.showModal();}
