@@ -457,3 +457,7 @@ button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
 @keyframes live-ping{0%{box-shadow:0 0 0 0 #8bbd3760}70%{box-shadow:0 0 0 8px #8bbd3700}100%{box-shadow:0 0 0 0 #8bbd3700}}
 @media(max-width:700px){.motion-marquee-track{gap:22px;padding:12px 0;animation-duration:22s}.motion-marquee span{font-size:10px}.hero:before{width:260px;height:260px;right:-8%;top:40%}.hero-image-main{animation-duration:7s}.hero-image-small{animation-duration:6s}.hero-sticker{animation-duration:5s}.product-card:hover{transform:none}.product-card:active .product-image img{transform:scale(1.035)}}
 @media(prefers-reduced-motion:reduce){.hero-grid,.hero:before,.hero-copy,.hero-copy .eyebrow,.hero h1,.hero-lead,.hero-buttons,.hero-proof,.hero-image-main,.hero-image-small,.hero-sticker,.visual-caption,.motion-marquee-track,.live-dot,.pulse-item strong{animation:none!important}.hero-image-main,.hero-image-small{transform:none!important}.motion-marquee-track{transform:none}.product-card,.product-image img,.product-image:after,.feature-image img{transition:none!important}}
+
+/* Reliable catalogue filtering: override card layout when a result is hidden. */
+.product-card.is-filtered-out { display: none !important; }
+[hidden] { display: none !important; }

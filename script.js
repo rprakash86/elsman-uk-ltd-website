@@ -1,55 +1,69 @@
 const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
 const menuButton=$('.menu-button'),nav=$('.navigation');
-menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
-$$('.navigation a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
+if(menuButton && nav) menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
+if(nav && menuButton) $$('.navigation a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}));
 $('#year').textContent=new Date().getFullYear();
 
-let activeFilter='all';
-const searchInput=$('#product-search');
-const filterButtons=$$('.filter');
-const productCards=$$('.product-card');
-function filterProducts(){
-  const q=(searchInput?.value||'').trim().toLowerCase();
-  let visible=0;
-  productCards.forEach(card=>{
-    const categoryMatch=activeFilter==='all'||(card.dataset.category||'')===activeFilter;
-    const searchable=((card.dataset.name||'')+' '+(card.textContent||'')).toLowerCase();
-    const show=categoryMatch&&(!q||searchable.includes(q));
-    card.hidden=!show;
-    if(show) visible++;
-  });
-  const noResults=$('#no-results');
-  if(noResults) noResults.hidden=visible!==0;
-  const results=$('#results-count');
-  if(results) results.textContent=`Showing ${visible} of ${productCards.length} product lines`;
-  const clear=$('#clear-search');
-  if(clear) clear.hidden=!q&&activeFilter==='all';
-}
-filterButtons.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    activeFilter=btn.dataset.filter||'all';
-    filterButtons.forEach(b=>{
-      const selected=b===btn;
-      b.classList.toggle('active',selected);
-      b.setAttribute('aria-pressed',String(selected));
+
+// Catalogue controls: isolated so unrelated page interactions cannot break them.
+(function initCatalogue(){
+  function start(){
+    const search=document.getElementById('product-search');
+    const buttons=[...document.querySelectorAll('.filter[data-filter]')];
+    const cards=[...document.querySelectorAll('.product-card')];
+    const count=document.getElementById('results-count');
+    const noResults=document.getElementById('no-results');
+    const clear=document.getElementById('clear-search');
+    let category='all';
+    function apply(){
+      const term=(search?.value||'').toLocaleLowerCase().trim();
+      let shown=0;
+      cards.forEach(card=>{
+        const matchesCategory=category==='all'||card.getAttribute('data-category')===category;
+        const haystack=((card.getAttribute('data-name')||'')+' '+card.innerText).toLocaleLowerCase();
+        const visible=matchesCategory&&(!term||haystack.includes(term));
+        card.classList.toggle('is-filtered-out',!visible);
+        card.setAttribute('aria-hidden',String(!visible));
+        if(visible) shown++;
+      });
+      if(count) count.textContent=`Showing ${shown} of ${cards.length} product lines`;
+      if(noResults) noResults.hidden=shown!==0;
+      if(clear) clear.hidden=(!term&&category==='all');
+    }
+    buttons.forEach(button=>{
+      button.addEventListener('click',()=>{
+        category=button.getAttribute('data-filter')||'all';
+        buttons.forEach(item=>{
+          const active=item===button;
+          item.classList.toggle('active',active);
+          item.setAttribute('aria-pressed',String(active));
+        });
+        apply();
+      });
     });
-    filterProducts();
-  });
-});
-if(searchInput) searchInput.addEventListener('input',filterProducts);
-$('#clear-search')?.addEventListener('click',()=>{
-  if(searchInput) searchInput.value='';
-  activeFilter='all';
-  filterButtons.forEach(b=>{
-    const selected=b.dataset.filter==='all';
-    b.classList.toggle('active',selected);
-    b.setAttribute('aria-pressed',String(selected));
-  });
-  filterProducts();
-  searchInput?.focus();
-});
-filterButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.classList.contains('active'))));
-filterProducts();
+    search?.addEventListener('input',apply);
+    clear?.addEventListener('click',()=>{
+      if(search) search.value='';
+      category='all';
+      buttons.forEach(button=>{
+        const active=button.getAttribute('data-filter')==='all';
+        button.classList.toggle('active',active);
+        button.setAttribute('aria-pressed',String(active));
+      });
+      apply(); search?.focus();
+    });
+    buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.classList.contains('active'))));
+    apply();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
+})();
+
+// Counters show truthful catalogue totals immediately; no observer is required.
+(function setCatalogueCounters(){
+  const counters=document.querySelectorAll('.count-up');
+  counters.forEach(el=>{el.textContent=el.getAttribute('data-count')||'0';});
+})();
 const productData={
  collar:{title:'Pet Protection Collar – 2 Pack',category:'PET ACCESSORIES',description:'A practical pet accessory for customers shopping for their dogs and cats.',image:'assets/Collar.jpg'},
  dino:{title:'Dinosaur Eggs & Figures',category:'TOYS & NOVELTY',description:'Brightly coloured novelty toys designed to catch the eye on the shelf.',image:'assets/Colorful Dinosaur Eggs and Toys.png'},
